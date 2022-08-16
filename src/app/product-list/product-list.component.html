@@ -1,0 +1,15 @@
+<h2>Products</h2>
+
+<!-- *ngFor makes it so that the div element repeats itself for each product on the list -->
+<div *ngFor="let el of products">
+  <h3>
+    <a [title]="el.name + ' details'" [routerLink]="['/products', el.id]">
+      {{ el.name }}
+    </a>
+  </h3>
+  <p *ngIf="el.description">Description: {{ el.description }}</p>
+
+  <!-- we have to wrap the event, which in this case is "click", in parantheses when doing event binding-->
+  <button type="button" (click)="share()" title="share button">Share</button>
+  <app-product-alerts [product]="el" (notify)="onNotify()"></app-product-alerts>
+</div>
